@@ -5,6 +5,7 @@
     <a href="https://github.com/ssMMiles/discord-interactions/actions"><img src="https://github.com/ssMMiles/interactions.ts/actions/workflows/tests.yml/badge.svg" alt="Tests status" /></a>
   </p>
 </div>
+
 *A template Discord bot made using [@discord-interactions](https://github.com/ssMMiles/discord-interactions).*
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ssMMiles/discord-interactions-worker)
