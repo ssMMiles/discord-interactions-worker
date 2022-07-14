@@ -21,15 +21,13 @@ export class Ping implements ISlashCommand {
     const now = Date.now();
 
     return ctx.reply(
-      new MessageBuilder()
-        .addEmbeds(
-          new EmbedBuilder().setTitle(
-            `Pong! Signing --\`\`${ctx.receivedAt.getTime() - ctx.signedAt.getTime()}ms\`\`--> Received --\`\`${
-              now - ctx.receivedAt.getTime()
-            }ms\`\`--> Sending This Response (Total: \`\`${now - ctx.signedAt.getTime()}ms\`\`)`
-          )
+      new MessageBuilder(
+        new EmbedBuilder(
+          `Pong! Signing --\`\`${ctx.receivedAt.getTime() - ctx.signedAt.getTime()}ms\`\`--> Received --\`\`${
+            now - ctx.receivedAt.getTime()
+          }ms\`\`--> Sending This Response (Total: \`\`${now - ctx.signedAt.getTime()}ms\`\`)`
         )
-        .addComponents(new ActionRowBuilder().addComponents(button))
+      ).addComponents(new ActionRowBuilder().addComponents(button))
     );
   };
 
@@ -38,7 +36,17 @@ export class Ping implements ISlashCommand {
       "pong",
       new ButtonBuilder().setEmoji({ name: "🔍" }).setStyle(ButtonStyle.Primary),
       async (ctx: ButtonContext<TestButtonState>): Promise<void> => {
-        return ctx.reply(new MessageBuilder().addEmbeds(new EmbedBuilder().setTitle(ctx.state.word)));
+        const now = Date.now();
+
+        return ctx.reply(
+          new MessageBuilder(
+            new EmbedBuilder(
+              `Pong! Signing --\`\`${ctx.receivedAt.getTime() - ctx.signedAt.getTime()}ms\`\`--> Received --\`\`${
+                now - ctx.receivedAt.getTime()
+              }ms\`\`--> Sending This Response (Total: \`\`${now - ctx.signedAt.getTime()}ms\`\`)`
+            )
+          )
+        );
       }
     )
   ];

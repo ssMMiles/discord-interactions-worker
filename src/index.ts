@@ -13,12 +13,12 @@ import {
   InteractionHandlerError,
   InteractionHandlerNotFound,
   InteractionHandlerTimedOut,
+  SyncMode,
   UnauthorizedInteraction,
   UnknownApplicationCommandType,
   UnknownComponentType,
   UnknownInteractionType
 } from "@discord-interactions/core";
-import "@discord-interactions/verify";
 import { Ping } from "./commands/Ping.js";
 
 export interface Env {
@@ -43,7 +43,9 @@ export default {
         set: async (key: string, ttl: number, value: string) => {
           cache.set(key, value);
         }
-      }
+      },
+
+      syncMode: SyncMode.Disabled
     });
 
     await app.commands.register(new Ping());
@@ -74,13 +76,11 @@ export default {
       });
     } catch (err) {
       if (err instanceof UnauthorizedInteraction) {
-        console.error("Unauthorized Interaction");
         return new Response("Invalid request", { status: 401 });
       }
 
       if (err instanceof InteractionHandlerNotFound) {
-        console.error("Interaction Handler Not Found");
-        console.dir(err.interaction);
+        console.error("Interaction Handler Not Found:", err);
 
         new Response("Invalid request", { status: 404 });
       }
@@ -97,14 +97,12 @@ export default {
         err instanceof UnknownComponentType
       ) {
         console.error("Unknown Interaction - Library may be out of date.");
-        console.dir(err.interaction);
 
         new Response("Server Error", { status: 500 });
       }
 
       if (err instanceof InteractionHandlerError) {
-        console.error("Interaction Handler Error");
-        console.error(err.cause);
+        console.error("Interaction Handler Error: ", err);
 
         new Response("Server Error", { status: 500 });
       }

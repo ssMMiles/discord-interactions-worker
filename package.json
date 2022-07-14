@@ -22,8 +22,7 @@
     "dev": "npm run start & npm run proxy"
   },
   "dependencies": {
-    "@discord-interactions/builders": "^0.2.6",
-    "@discord-interactions/core": "^0.2.6",
-    "@discord-interactions/verify": "^0.2.6"
+    "@discord-interactions/builders": "^0.3.0",
+    "@discord-interactions/core": "^0.3.0"
   }
 }
