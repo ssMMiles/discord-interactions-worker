@@ -17,9 +17,8 @@
     "clean": "rimraf dist",
     "format": "prettier --write src",
     "lint": "eslint src",
-    "start": "wrangler dev",
     "proxy": "ssh -R 443:localhost:8787 tunnel.us.ngrok.com http",
-    "dev": "npm run start & npm run proxy"
+    "dev": "wrangler dev & npm run proxy"
   },
   "dependencies": {
     "@discord-interactions/builders": "^0.3.0",

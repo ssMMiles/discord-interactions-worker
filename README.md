@@ -36,7 +36,7 @@ Afterwards, run `wrangler login` to login to your Cloudflare account with OAuth:
 wrangler login
 ```
 
-Copy `wrangler.example.toml` into `wrangler.toml` and edit it as you'd like.
+Copy `wrangler.toml.example` into `wrangler.toml` and edit it as you'd like.
 
 ### Filling in secrets
 You can enter in environment secrets with `wrangler secret put`, here are the keys that are required to run this:
@@ -47,7 +47,16 @@ npx wrangler secret put TOKEN
 ```
 
 ### Development
-To run this locally, copy `.dev.vars.example` to `.dev.vars` and fill in the variables, then you can run it through `npm run start`, or `npm run dev` to proxy it through an SSH tunnel to Ngrok.
+To run this locally, copy `.dev.vars.example` to `.dev.vars` and fill in those values.
+You can then either:
+```sh
+# Run a version of your worker listening locally
+wrangler dev
+
+# If you have Ngrok configured to work with SSH, 
+# this will run `wrangler dev` and open a tunnel for remote access
+npm run dev
+```
 
 ### Production
 To deploy, just use `npm run deploy`.
